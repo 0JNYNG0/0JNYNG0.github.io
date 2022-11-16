@@ -72,7 +72,7 @@ body {
   font-family: $cute;
   margin-top: 0;
   line-height: 1.2;
-  color: mix(#fff, $primary-color, 40%);
+  color: mix(#fff, $primary-color, 15%);
 
   & + .page__meta {
     margin-top: -0.5em;
@@ -328,13 +328,13 @@ body {
   text-decoration: none;
   border: 1px solid $background-color;
   border-radius: $border-radius;
-  background-color: #d1d2d3;
+  background-color: #616161;
   font-family: $serif;
-  color: $primary-color;
+  color: mix(rgb(255, 255, 255), $primary-color, 30%);
 
   &:hover {
     text-decoration: none;
-    color: mix(#00b579, $text-color, 40%); /* 커서 댈 때 색깔 */
+    color: mix(#ffdf51, $text-color, 40%); /* 커서 댈 때 색깔 */
   }
 }
 
@@ -346,13 +346,13 @@ body {
   text-decoration: none;
   border: 1px solid $background-color;
   border-radius: $border-radius;
-  background-color: mix(#fff, #d3dadf, 18%);
+  background-color: #616161;
   font-family: $serif;
-  color: mix(rgb(255, 255, 255), $primary-color, 2%);;
+  color: $primary-color;
 
   &:hover {
     text-decoration: none;
-    color: mix(#00b579, $text-color, 40%); /* 커서 댈 때 색깔 */
+    color: mix(#ffdf51, $text-color, 40%); /* 커서 댈 때 색깔 */
   }
 }
 
@@ -372,6 +372,7 @@ body {
   .archive__subtitle {
     clear: both;
     border: 0;
+    color: mix(rgb(255, 255, 255), $primary-color, 10%);
   }
 
   + .taxonomy__section {
@@ -409,7 +410,7 @@ body {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    color: mix(rgb(0, 0, 0), $primary-color, 60%);
+    color: mix(rgb(255, 255, 255), $primary-color, 70%);
     text-decoration: none;
     border-bottom: 1px solid $border-color;
     font-family: $serif;
@@ -561,7 +562,7 @@ body {
 .page__related-title {
   margin-bottom: 20px;
   font-size: $type-size-6;
-  //color: #fcd14f;
+  color: #fff6db;
 }
 
 /*

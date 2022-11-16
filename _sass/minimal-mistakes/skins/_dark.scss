@@ -5,17 +5,17 @@
 /* Colors */
 $background-color: #373C3F !default;
 $text-color: #eaeaea !default;
-$primary-color: #FFBF00 !default;
-$border-color: mix(#fff, $background-color, 20%) !default;
-$code-background-color: #4D5357 !default;
-$code-background-color-dark: #3F4447 !default;
+$primary-color: #ff8f26 !default;
+$border-color: mix(rgb(255, 255, 255), $background-color, 20%) !default;
+$code-background-color: #5a5a5a !default;
+$code-background-color-dark: #5a5a5a !default;
 $form-background-color: mix(#000, $background-color, 15%) !default;
 $footer-background-color: mix(#000, $background-color, 20%) !default;
-$link-color: mix(#00adb5, $text-color, 40%) !default;
-$link-color-hover: mix(#fff, $link-color, 25%) !default;
-$link-color-visited: mix(#00adb5, $text-color, 40%) !default;
+$link-color: mix(#3db2ff, $text-color, 35%) !default;
+$link-color-hover: mix(#fff, $link-color, 40%) !default;
+$link-color-visited: mix(#3db2ff, $text-color, 25%) !default;
 $masthead-link-color: $text-color !default;
-$masthead-link-color-hover: mix(#000, $text-color, 20%) !default;
+$masthead-link-color-hover: mix(rgb(255, 116, 2), $text-color, 40%) !default;
 $navicon-link-color-hover: mix(#000, $background-color, 30%) !default;
 
 .author__urls.social-icons .svg-inline--fa,
