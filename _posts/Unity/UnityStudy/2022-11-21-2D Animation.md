@@ -1,0 +1,120 @@
+---
+title:  "[Unity 2D] 2D Animation" 
+excerpt: "Unity 2D Animation"
+
+categories:
+  - Unitystudy
+tags:
+  - [Unity2D]
+
+toc: true
+toc_sticky: true
+ 
+date: 2022-11-21
+last_modified_at: 2022-11-21
+
+---
+```
+하나씩 차근차근 개인적으로 공부한 것을 기록하는 블로그입니다.
+참고하시고 잘못되거나 고쳐야 할 부분이 있다면 지적 부탁드립니다!
+읽어주셔서 감사합니다🙂
+```
+## 오브젝트 방향 전환
+SpriteRenderer 컴포넌트 내 Flip 속성의 x, y 체크여부에 따라 오브젝트가 해당 축 기준으로 이미지가 반전된다.
+
+```c#
+public class Player : MonoBehaviour
+{
+    SpriteRenderer spriter;
+
+    void Awake()
+    {
+        spriter = GetComponent<SpriteRenderer>();
+    }
+
+    void LateUpdate()
+    {
+        if (inputVec.x != 0) {
+            spriter.flipX = inputVec.x < 0;
+        }
+    }
+}
+```
+
+```c#
+void LateUpdate() { }
+```
+LateUpdate : Update에서 한 프레임이 종료되기 직전 실행되는 생명주기 함수
+
+```c#
+if (inputVec.x != 0) {
+    spriter.flipX = inputVec.x < 0;
+}
+```
+- if 조건 : 사용자 입력에 의해 inputVec.x 값이 0이 아닌 경우
+    - `spriter.flipX = inputVec.x < 0;` 해당 오브젝트의 flipX 속성 값을 true or false 값으로 변경해준다.
+        - `inputVec.x < 0;` 처럼 비교 연산자의 결과를 바로 대입 연산자로 넣을 수 있다.
+        x 방향 벡터의 값이 양수(좌측)인 경우 false, 음수(좌측)인 경우 true 값으로 방향 전환을 해준다.
+
+## 셀 애니메이션
+- 셀 애니메이션 : 여러 장의 이미지를 순차적으로 보여주는 방식
+
+- 새로운 애니메이션 만들기
+    애니메이션으로 만들 스프라이트 이미지를 다중 선택하여 Hierarchy의 Player 오브젝트로 Drag&Drop 한다.
+    애니메이션 파일은 `프로젝트 폴더/Assets/project_name/Animations` 경로 폴더에 ex) Run_Player0.anim 파일명으로 생성한다.
+    - 다중선택 방법
+        1. 첫 번째 이미지 클릭 -> Shift + 마지막 이미지 클릭(범위 선택)
+        2. 첫 번째 이미지 클릭 -> Ctrl + 추가로 원하는 이미지들 클릭(개별 선택)
+    애니메이션 파일을 만들었다면 해당 Player 오브젝트 컴포넌트에 Animator가 생성된다.
+    - Animator : 애니메이션을 상태로 관리해주는 컴포넌트
+    처음 Drag&Drop으로 애니메이션 파일을 추가하고 Animator 컴포넌트가 생성될 때 자동으로 Animations 폴더에 **애니메이터**가 생성된다.
+
+    - Tip!!!
+    <br>
+    Animator 파일 이름을 "Ac이름" 으로 작성하면 파일이 앞쪽으로 정렬되므로 찾기가 쉬워진다.
+
+## 애니메이터 작업
+- 노란색 상태 : 게임 실행 시 가장 먼저 실행되는 상태 표시
+    - 기본 상태를 다른 애니메이션으로 바꿔주고 싶다면 바꿔주고 싶은 애니메이션 우클릭 후 `Set as Layer Default State` 를 클릭해 기본 상태로 지정한다.
+- Transition 설정
+    - Transition : 상태 간 전환을 어떻게 할지 설정하는 통로
+    <br>
+    애니메이션 우클릭 후 `Make Transition` 를 클릭하여 연결하고자 하는 상태를 클릭하여 연결한다.
+- 상태 변경을 위한 조건 Parameter 추가
+    좌측 상단 Parameter에서 '+' 버튼을 눌러 Float, Int, Bool, Trigger 중에 추가할 수 있다.
+    <br>
+    추가한 조건은 Transition 화살표를 클릭하여 나온 Inspector 창에서 하단 Conditions 부분에서 어떤 조건일 때 실행될지 선언해줄 수 있다.
+
+- Any State : 어떤 상태에 있든 상관없이 이동하고 싶다면 Any State와 Transition을 연결해준다.
+
+- Transition Duration 설정
+    2D 셀 애니메이션에서는 애니메이션을 부드럽게 전환하기 위한 Duration은 필요가 없기 때문에 Transition Inspector 안에 `Transition Duration (s)` 값을 0 혹은 0.01 로 최소화 해준다.
+- Transition Exit Time 설정
+    - `Has Exit Time` : 해당 애니메이션이 다 끝나면 그 때 다음 애니메이션으로 바꾸겠다라는 설정<br>-> 즉시 상태 변경을 위해서는 체크 해제
+- 애니메이션 Loop 반복 설정
+    애니메이션을 반복할 필요가 없다면 해당 애니메이션 파일을 눌러 Inspector 안의 Loop Time 속성 체크를 해제하면된다.
+
+## 애니메이션 코드 작성
+```c#
+public class Player : MonoBehaviour
+{
+    Animator anim;
+
+    void Awake()
+    {
+        anim = GetComponent<Animator>();
+        // 초기화 잊지말기!!!
+    }
+    void LateUpdate()
+    {
+        anim.SetFloat("Speed", inputVec.magnitude); // magnitude : 벡터의 순수한 크기 값
+        // 애니메이터에서 설정한 파라미터 타입과 동일한 함수로 작성한다.
+        //ex) SetFloat, SetBool,,,
+    }
+}
+```
+
+
+- 작업 중간중간 File -> Save와 Save Project 한 번씩 해주기!!
+
+<br><br>
