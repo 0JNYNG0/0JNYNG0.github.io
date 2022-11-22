@@ -65,7 +65,8 @@ if (inputVec.x != 0) {
     - 다중선택 방법
         1. 첫 번째 이미지 클릭 -> Shift + 마지막 이미지 클릭(범위 선택)
         2. 첫 번째 이미지 클릭 -> Ctrl + 추가로 원하는 이미지들 클릭(개별 선택)
-    애니메이션 파일을 만들었다면 해당 Player 오브젝트 컴포넌트에 Animator가 생성된다.
+    <br>
+    -> 애니메이션 파일을 만들었다면 해당 Player 오브젝트 컴포넌트에 Animator가 생성된다.
     - Animator : 애니메이션을 상태로 관리해주는 컴포넌트
     처음 Drag&Drop으로 애니메이션 파일을 추가하고 Animator 컴포넌트가 생성될 때 자동으로 Animations 폴더에 **애니메이터**가 생성된다.
 
@@ -103,18 +104,43 @@ public class Player : MonoBehaviour
     void Awake()
     {
         anim = GetComponent<Animator>();
-        // 초기화 잊지말기!!!
     }
     void LateUpdate()
     {
-        anim.SetFloat("Speed", inputVec.magnitude); // magnitude : 벡터의 순수한 크기 값
-        // 애니메이터에서 설정한 파라미터 타입과 동일한 함수로 작성한다.
-        //ex) SetFloat, SetBool,,,
+        anim.SetFloat("Speed", inputVec.magnitude);
     }
 }
 ```
+```c#
+Animator anim;
 
+void Awake()
+{
+    anim = GetComponent<Animator>();
+}
+```
+- Animator 타입의 변수를 만들고 초기화까지 잊지말고 진행해준다.
 
+```c#
+void LateUpdate()
+{
+    anim.SetFloat("Speed", inputVec.magnitude);
+}
+```
+- 애니메이터에서 설정한 Parameter 타입과 동일한 함수로 작성한다
+    <br>ex) SetFloat, SetBool 등등<br>
+    - Magnitude : 벡터의 순수한 크기 값
+
+## 애니메이션 재활용
+- 따로 사용할 오브젝트의 애니메이션들을 모두 만들어놓는다.
+- Animator Override Controller : 애니메이션만 덮어 씌우는 에셋
+    - Animations 폴더의 '+' 버튼을 눌러 `Animator Override Controller`를 클릭해 생성해준다.
+    - 새로 추가한 오버라이드 컨트롤러의 Inspector 창의 속성 Controller 부분에 재사용하고자 하는 Controller를 넣고 생성된 Override 애니메이션 부분에 우리가 따로 만들어놓은 애니메이션을 넣는다.
+    <br>
+    -> 구조가 똑같고 애니메이션만 다른 경우에 따로 Animator를 만들지 않아도 유용하게 만들어 사용할 수 있다.
+    - Override Controller를 사용하기 위해 새롭게 적용해주고자 하는 오브젝트의 Animator 컴포넌트 속성 Controller에 새롭게 만들어준 Override Controller를 넣어줌으로써 컨트롤러를 재사용하게 된다!
+
+## 추가적인 TIP
 - 작업 중간중간 File -> Save와 Save Project 한 번씩 해주기!!
-
+- 오브젝트 클릭 후 Ctrl + D 를 눌러 손쉽게 복제 가능!!
 <br><br>
