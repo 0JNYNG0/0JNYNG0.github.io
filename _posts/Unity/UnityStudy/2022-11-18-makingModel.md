@@ -1,6 +1,6 @@
 ---
 title:  "[Unity 2D] 2D 오브젝트 만들기 및 스프라이트 설정" 
-excerpt: "유니티 학습 노트"
+excerpt: "[골드메탈] 뱀서라이크 강좌 노트"
 
 categories:
   - Unitystudy
@@ -11,14 +11,19 @@ toc: true
 toc_sticky: true
  
 date: 2022-11-18
-last_modified_at: 2022-11-18
+last_modified_at: 2022-11-23
 
 ---
+
 ```
 하나씩 차근차근 개인적으로 공부한 것을 기록하는 블로그입니다.
 참고하시고 잘못되거나 고쳐야 할 부분이 있다면 지적 부탁드립니다!
 읽어주셔서 감사합니다🙂
 ```
+***
+🌟**유튜브 '골드메탈'님의 [유니티 뱀서라이크] 강좌를 보고 정리해놓은 글입니다.**🌟<br>
+<a href="https://www.youtube.com/watch?v=qOTbP9ciJ88" class="btn btn--warning">골드메탈님의 [뱀서라이크 강좌] 보러가기 🎮</a>
+{: .notice--primary}
 
 ## 2D 스프라이트
 - **스프라이트 시트** or **아틀라스** : 여러 스프라이트를 하나로 묶어놓은 형태

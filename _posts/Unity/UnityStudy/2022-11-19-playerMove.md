@@ -1,6 +1,6 @@
 ---
 title:  "[Unity 2D] 플레이어 이동" 
-excerpt: "유니티 학습 노트"
+excerpt: "[골드메탈] 뱀서라이크 강좌 노트"
 
 categories:
   - Unitystudy
@@ -11,7 +11,7 @@ toc: true
 toc_sticky: true
  
 date: 2022-11-19
-last_modified_at: 2022-11-19
+last_modified_at: 2022-11-23
 
 ---
 ```
@@ -19,9 +19,17 @@ last_modified_at: 2022-11-19
 참고하시고 잘못되거나 고쳐야 할 부분이 있다면 지적 부탁드립니다!
 읽어주셔서 감사합니다🙂
 ```
+***
+🌟**유튜브 '골드메탈'님의 [유니티 뱀서라이크] 강좌를 보고 정리해놓은 글입니다.**🌟<br>
+<a href="https://www.youtube.com/watch?v=qOTbP9ciJ88" class="btn btn--warning">골드메탈님의 [뱀서라이크 강좌] 보러가기 🎮</a>
+{: .notice--primary}
+
 ## 폴더 및 C#스크립트 파일 생성
 따로 스크립트 폴더를 만들고 해당 스크립트 폴더 안에 C# Script 파일을 만들자.<br>
-이 파일은 하나의 컴포넌트의 역할을 하며 사용하고자 하는 오브젝트의 컴포넌트란에 Drag&Drop으로 부착하거나 Add Component를 통해서 추가가 가능하다.
+이 파일은 하나의 컴포넌트의 역할을 하며 사용하고자 하는 오브젝트의 컴포넌트란에 Drag&Drop으로 부착하거나 Add Component를 통해서 추가가 가능하다.<br><br>
+![11111](https://user-images.githubusercontent.com/67769404/203803818-6b864a3e-b99a-4917-b4fa-a581d15e7563.png)<br><br>
+![1111](https://user-images.githubusercontent.com/67769404/203803779-c0cdd3a5-6df0-4136-8f68-1c52731593db.png)<br><br>
+![11111](https://user-images.githubusercontent.com/67769404/203804735-786482f8-9ab8-4124-b5c2-404ba3d567b6.png)
 
 ## C# 스크립트
 ```c#
@@ -73,6 +81,8 @@ public class Player : MonoBehaviour {
     맨앞에 **public**을 붙여줌으로써 컴포넌트에서 사용자가 실시간으로 바뀌는 값을 보거나 따로 접근, 조작이 가능해진다.
 <br>
 
+![11111](https://user-images.githubusercontent.com/67769404/203805560-f04fa216-a779-4f21-8f58-cef95593a0f7.png)
+
 ## 키보드 입력 받기
 ```c#
 Vector2 inputVec;
@@ -89,6 +99,9 @@ void Update()
     (Horizontal, Vertical 같이 기본적으로 설정되어있는 이름들이 존재하고 커스텀이 가능하다)
     - **GetAxisRaw** : 더욱 명확한 입력값 컨트롤이 가능해짐
     - **GetAxis** : GetAxisRaw와 달리 입력값이 약간 미끄러지듯 부드럽게 보정됨
+    <br>
+    
+![1111](https://user-images.githubusercontent.com/67769404/203806457-40eded8d-f524-4c07-8dbe-31028742e913.png)
 <br>
 
 ## 플레이어 이동 구현
@@ -123,12 +136,13 @@ void FixedUpdate()
     ex) 뱀서라이크류 게임은 플레이어가 상하좌우 이동이 구현되어야 하므로 '위치 이동'을 사용한다.
     - 개발하는 게임의 특성에 따라 자유롭게 선택
     <br><br>
-- `FixedUpdate(){ }` : 물리 연산 프레임마다 호출되는 생명주기
+- `FixedUpdate()` : 물리 연산 프레임마다 호출되는 생명주기
     <br>
     그냥 매 프레임마다 호출되는 Update()와는 달리 물리 연산을 해야할 때 주로 사용한다.
     <br><br>
-- `Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime`
-    <br>
+-   ```c#
+    Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime
+    ```
     사용자의 입력에 일정한 시간동안 일정한 값만큼 이동해야 하기 때문에 입력에 따른 새로운 Vector2 값을 만들어준다.
     - `.normalized` : 벡터 값이 어느 방향이든지 크기가 1이 되도록 좌표가 수정된 값 (이 작업이 없다면 수평, 수직 이동보다 대각선 이동 속도가 훨씬 빨라질 것이다)
     - `Time.fixedDeltaTime` : 물리 프레임 중 한 프레임이 소비한 시간
