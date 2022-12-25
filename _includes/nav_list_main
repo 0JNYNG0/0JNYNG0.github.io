@@ -25,6 +25,16 @@
             </ul>
       </li>
       <li>
+        <span class="nav__sub-title">SQL</span>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "Sql-solve" %}
+                        <li><a href="/categories/sql-solve" class="">SQL 문제풀이 ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+      </li>
+      <li>
         <span class="nav__sub-title">Unity</span>
             <ul>
                 {% for category in site.categories %}
