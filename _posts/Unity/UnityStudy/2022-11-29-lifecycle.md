@@ -1,5 +1,5 @@
 ---
-title:  "[Unity] 유니티 게임오브젝트의 흐름 (LifeCycle)" 
+title:  "[Unity Basis] 유니티 게임오브젝트의 흐름 (LifeCycle)" 
 excerpt: "[골드메탈] 유니티 입문 강좌"
 
 categories:
