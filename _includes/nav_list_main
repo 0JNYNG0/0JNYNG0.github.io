@@ -55,11 +55,18 @@
             </ul>
       </li>
       <li>
-        <span class="nav__sub-title">Nomad Coders Lecture Study</span>
+        <span class="nav__sub-title">Lecture Notes</span>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "VanillaJs" %}
-                        <li><a href="/categories/vanillaJs" class="">Vanilla JS ({{category[1].size}})</a></li>
+                    {% if category[0] == "NomadCoders" %}
+                        <li><a href="/categories/nomadCoders" class="">Nomad Coders ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "FastCampus" %}
+                        <li><a href="/categories/fastCampus" class="">FastCampus ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
